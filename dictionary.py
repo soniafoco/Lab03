@@ -12,7 +12,9 @@ class Dictionary:
         file.close()
 
     def printAll(self):
-        pass
+        print(f"Dizionario in lingua {self._language}")
+        for dict_word in self._dict:
+            print(dict_word)
 
     def contains(self, word):
         return self._dict.__contains__(word)

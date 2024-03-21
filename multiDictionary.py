@@ -8,11 +8,8 @@ class MultiDictionary:
         self.dizionari = {}
 
     def printDic(self, language):
-        dict = self.dizionari.get(language).dict() #singolo dizionario
-
-        print(f"Dizionario in lingua {language}")
-        for dict_word in dict:
-            print(dict_word)
+        dict = self.dizionari.get(language) #singolo Dizionario
+        dict.printAll()
 
     def searchWord(self, words, language):
         dict = self.dizionari.get(language) #singolo dizionario

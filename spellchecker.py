@@ -37,7 +37,7 @@ class SpellChecker:
                 print(word.__str__())
         print(time)
 
-        #multiDizionario.printDic(language)
+        multiDizionario.printDic(language)
 
     def printMenu(self):
         print("______________________________\n" +
