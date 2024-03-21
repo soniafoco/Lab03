@@ -1,14 +1,43 @@
 import time
 
 import multiDictionary as md
+from dictionary import Dictionary
 
 class SpellChecker:
 
     def __init__(self):
-        pass
+        self.dizionario = None
 
     def handleSentence(self, txtIn, language):
-        pass
+        self.dizionario = Dictionary(language)
+        self.dizionario.loadDictionary("resources/" + language + ".txt")
+        multiDizionario = md.MultiDictionary()
+        multiDizionario.addDictionary(language, self.dizionario)
+
+        txtIn = replaceChars(txtIn)
+
+        print("______________________________\n" + "Using Contains")
+        list_richWords, time = multiDizionario.searchWord(txtIn, language)
+        for word in list_richWords:
+            if word.corretta() == False:
+                print(word.__str__())
+        print(time)
+
+        print("______________________________\n" + "Using Linear search")
+        list_richWords, time = multiDizionario.searchWordLinear(txtIn, language)
+        for word in list_richWords:
+            if word.corretta() == False:
+                print(word.__str__())
+        print(time)
+
+        print("______________________________\n" + "Using Dichotomic search")
+        list_richWords, time = multiDizionario.searchWordDichotomic(txtIn, language)
+        for word in list_richWords:
+            if word.corretta() == False:
+                print(word.__str__())
+        print(time)
+
+        #multiDizionario.printDic(language)
 
     def printMenu(self):
         print("______________________________\n" +
@@ -23,4 +52,10 @@ class SpellChecker:
 
 
 def replaceChars(text):
-    pass
+    chars = "\\`*_{}[]()>#+-.!$%^;,=_~"
+    for c in chars:
+        text = text.replace(c, "")
+    return text
+
+
+
